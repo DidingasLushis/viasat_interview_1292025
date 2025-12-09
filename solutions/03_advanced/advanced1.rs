@@ -58,6 +58,10 @@ fn count_zero_visits(input: &str) -> usize {
     zero_count
 }
 
+fn main() {
+    // You can optionally experiment here.
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

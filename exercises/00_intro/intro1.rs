@@ -7,11 +7,12 @@
 
 fn main() {
     println!(r#"       Welcome to...                      "#);
-    println!(r#"__     ___                 _   
-    \ \   / (_) __ _ ___  __ _| |_ 
-    \ \ / /| |/ _` / __|/ _` | __|
-    \ V / | | (_| \__ \ (_| | |_ 
-    \_/  |_|\__,_|___/\__,_|\__|"#);
+    println!(r#"
+__     ___                 _   
+\ \   / (_) __ _ ___  __ _| |_ 
+ \ \ / /| |/ _` / __|/ _` | __|
+  \ V / | | (_| \__ \ (_| | |_ 
+   \_/  |_|\__,_|___/\__,_|\__|"#);
     println!();
     println!("This exercise compiles successfully. The remaining exercises contain a compiler");
     println!("or logic error. The central concept behind this interview is to fix these errors and");

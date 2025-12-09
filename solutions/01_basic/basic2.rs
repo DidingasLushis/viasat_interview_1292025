@@ -21,6 +21,10 @@ fn get_length(v: &Value) -> usize {
     }
 }
 
+fn main() {
+    // You can optionally experiment here.
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

@@ -27,6 +27,10 @@ fn parse_key_value(input: &str) -> _TODO_ {
     }
 }
 
+fn main() {
+    // You can optionally experiment here.
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

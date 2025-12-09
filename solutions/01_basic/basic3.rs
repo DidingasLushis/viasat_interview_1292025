@@ -35,6 +35,10 @@ fn parse_key_value(input: &str) -> Result<(String, i32), ParseError> {
     }
 }
 
+fn main() {
+    // You can optionally experiment here.
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

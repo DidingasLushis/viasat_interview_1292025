@@ -30,6 +30,10 @@ struct UserBuilder {
 // The build() method should return User if name and age are set,
 // or panic with a helpful message if required fields are missing
 
+fn main() {
+    // You can optionally experiment here.
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

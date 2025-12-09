@@ -6,18 +6,14 @@ fn pair_with_padding(input: Vec<i32>) -> Vec<(i32, i32)> {
     let mut result = Vec::new();
     
     for i in 0..input.len() {
-        if i % 2 == 0 {
-            let first = input[i];
-            let second = if i + 1 < input.len() {
-                input[i + 1]
-            } else {
-                0
-            };
-            result.push((first, second));
-        }
+        // Nothing here yet...  
     }
     
     result
+}
+
+fn main() {
+    // You can optionally experiment here.
 }
 
 #[cfg(test)]

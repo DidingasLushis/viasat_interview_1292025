@@ -14,6 +14,10 @@ fn pair_with_padding(input: Vec<i32>) -> Vec<(i32, i32)> {
         .collect()  // Collect into Vec<(i32, i32)>
 }
 
+fn main() {
+    // You can optionally experiment here.
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

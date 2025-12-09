@@ -17,6 +17,9 @@ fn get_length(v: Value) -> usize {
     }
 }
 
+fn main() {
+    // You can optionally experiment here.
+}
 
 // Don't modify the tests!
 #[cfg(test)]

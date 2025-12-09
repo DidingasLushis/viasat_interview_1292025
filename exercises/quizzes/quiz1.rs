@@ -1,44 +1,63 @@
-// TODO: Combine your knowledge from all previous exercises to solve this challenge.
+// This is a quiz for the following sections:
+// - Strings
+// - Vecs
+// - Move semantics
+// - Modules
+// - Enums
 //
-// Create a function that processes a list of transactions and returns a summary.
-// Each transaction is a string in the format "TYPE AMOUNT" where:
-// - TYPE is either "DEPOSIT" or "WITHDRAW"
-// - AMOUNT is a positive integer
+// Let's build a little machine in the form of a function. As input, we're going
+// to give a list of strings and commands. These commands determine what action
+// is going to be applied to the string. It can either be:
+// - Uppercase the string
+// - Trim the string
+// - Append "bar" to the string a specified amount of times
 //
-// Return a Result containing the final balance, or an error if:
-// - The format is invalid
-// - A withdrawal would result in a negative balance
+// The exact form of this will be:
+// - The input is going to be a Vector of 2-length tuples,
+//   the first element is the string, the second one is the command.
+// - The output element is going to be a vector of strings.
 
-fn process_transactions(transactions: &[&str]) -> Result<i32, String> {
-    // TODO: Implement this function
-    Ok(0)
+enum Command {
+    Uppercase,
+    Trim,
+    Append(usize),
+}
+
+mod my_module {
+    use super::Command;
+
+    // TODO: Complete the function as described above.
+    // pub fn transformer(input: ???) -> ??? { ??? }
+}
+
+fn main() {
+    // You can optionally experiment here.
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    // TODO: What do we need to import to have `transformer` in scope?
+    // use ???;
+    use super::Command;
 
     #[test]
-    fn test_valid_transactions() {
-        let transactions = vec!["DEPOSIT 100", "WITHDRAW 30", "DEPOSIT 50"];
-        assert_eq!(process_transactions(&transactions), Ok(120));
-    }
+    fn it_works() {
+        let input = vec![
+            ("hello".to_string(), Command::Uppercase),
+            (" all roads lead to rome! ".to_string(), Command::Trim),
+            ("foo".to_string(), Command::Append(1)),
+            ("bar".to_string(), Command::Append(5)),
+        ];
+        let output = transformer(input);
 
-    #[test]
-    fn test_insufficient_funds() {
-        let transactions = vec!["DEPOSIT 50", "WITHDRAW 100"];
-        assert!(process_transactions(&transactions).is_err());
-    }
-
-    #[test]
-    fn test_invalid_format() {
-        let transactions = vec!["DEPOSIT 50", "INVALID"];
-        assert!(process_transactions(&transactions).is_err());
-    }
-
-    #[test]
-    fn test_empty() {
-        let transactions = vec![];
-        assert_eq!(process_transactions(&transactions), Ok(0));
+        assert_eq!(
+            output,
+            [
+                "HELLO",
+                "all roads lead to rome!",
+                "foobar",
+                "barbarbarbarbarbar",
+            ]
+        );
     }
 }
