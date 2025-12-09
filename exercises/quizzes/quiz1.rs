@@ -1,31 +1,44 @@
-// This is a quiz for the following sections:
-// - Variables
-// - Functions
-// - If
+// TODO: Combine your knowledge from all previous exercises to solve this challenge.
 //
-// Mary is buying apples. The price of an apple is calculated as follows:
-// - An apple costs 2 rustbucks.
-// - However, if Mary buys more than 40 apples, the price of each apple in the
-// entire order is reduced to only 1 rustbuck!
+// Create a function that processes a list of transactions and returns a summary.
+// Each transaction is a string in the format "TYPE AMOUNT" where:
+// - TYPE is either "DEPOSIT" or "WITHDRAW"
+// - AMOUNT is a positive integer
+//
+// Return a Result containing the final balance, or an error if:
+// - The format is invalid
+// - A withdrawal would result in a negative balance
 
-// TODO: Write a function that calculates the price of an order of apples given
-// the quantity bought.
-// fn calculate_price_of_apples(???) -> ??? { ??? }
-
-fn main() {
-    // You can optionally experiment here.
+fn process_transactions(transactions: &[&str]) -> Result<i32, String> {
+    // TODO: Implement this function
+    Ok(0)
 }
 
-// Don't change the tests!
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    fn verify_test() {
-        assert_eq!(calculate_price_of_apples(35), 70);
-        assert_eq!(calculate_price_of_apples(40), 80);
-        assert_eq!(calculate_price_of_apples(41), 41);
-        assert_eq!(calculate_price_of_apples(65), 65);
+    fn test_valid_transactions() {
+        let transactions = vec!["DEPOSIT 100", "WITHDRAW 30", "DEPOSIT 50"];
+        assert_eq!(process_transactions(&transactions), Ok(120));
+    }
+
+    #[test]
+    fn test_insufficient_funds() {
+        let transactions = vec!["DEPOSIT 50", "WITHDRAW 100"];
+        assert!(process_transactions(&transactions).is_err());
+    }
+
+    #[test]
+    fn test_invalid_format() {
+        let transactions = vec!["DEPOSIT 50", "INVALID"];
+        assert!(process_transactions(&transactions).is_err());
+    }
+
+    #[test]
+    fn test_empty() {
+        let transactions = vec![];
+        assert_eq!(process_transactions(&transactions), Ok(0));
     }
 }

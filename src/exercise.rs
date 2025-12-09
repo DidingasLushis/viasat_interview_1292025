@@ -23,11 +23,12 @@ pub fn solution_link_line(
     stdout.queue(ResetColor)?;
     stdout.write_all(b" for comparison: ")?;
     file_path(stdout, Color::Cyan, |writer| {
-        if emit_file_links && let Some(canonical_path) = term::canonicalize(solution_path) {
-            terminal_file_link(writer, solution_path, &canonical_path)
-        } else {
-            writer.stdout().write_all(solution_path.as_bytes())
+        if emit_file_links {
+            if let Some(canonical_path) = term::canonicalize(solution_path) {
+                return terminal_file_link(writer, solution_path, &canonical_path);
+            }
         }
+        writer.stdout().write_all(solution_path.as_bytes())
     })?;
     stdout.write_all(b"\n")
 }
@@ -48,17 +49,17 @@ fn run_bin(
 
     let success = cmd_runner.run_debug_bin(bin_name, output.as_deref_mut())?;
 
-    if let Some(output) = output
-        && !success
-    {
-        // This output is important to show the user that something went wrong.
-        // Otherwise, calling something like `exit(1)` in an exercise without further output
-        // leaves the user confused about why the exercise isn't done yet.
-        write_ansi(output, SetAttribute(Attribute::Bold));
-        write_ansi(output, SetForegroundColor(Color::Red));
-        output.extend_from_slice(b"The exercise didn't run successfully (nonzero exit code)");
-        write_ansi(output, ResetColor);
-        output.push(b'\n');
+    if !success {
+        if let Some(output) = output {
+            // This output is important to show the user that something went wrong.
+            // Otherwise, calling something like `exit(1)` in an exercise without further output
+            // leaves the user confused about why the exercise isn't done yet.
+            write_ansi(output, SetAttribute(Attribute::Bold));
+            write_ansi(output, SetForegroundColor(Color::Red));
+            output.extend_from_slice(b"The exercise didn't run successfully (nonzero exit code)");
+            write_ansi(output, ResetColor);
+            output.push(b'\n');
+        }
     }
 
     Ok(success)
@@ -84,11 +85,12 @@ impl Exercise {
         emit_file_links: bool,
     ) -> io::Result<()> {
         file_path(writer, Color::Blue, |writer| {
-            if emit_file_links && let Some(canonical_path) = self.canonical_path.as_deref() {
-                terminal_file_link(writer, self.path, canonical_path)
-            } else {
-                writer.write_str(self.path)
+            if emit_file_links {
+                if let Some(canonical_path) = self.canonical_path.as_deref() {
+                    return terminal_file_link(writer, self.path, canonical_path);
+                }
             }
+            writer.write_str(self.path)
         })
     }
 }

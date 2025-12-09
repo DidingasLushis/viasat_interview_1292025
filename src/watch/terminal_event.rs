@@ -64,7 +64,7 @@ pub fn terminal_event_handler(
                     return;
                 }
             }
-            Ok(Event::FocusGained | Event::FocusLost | Event::Mouse(_)) => continue,
+            Ok(Event::FocusGained | Event::FocusLost | Event::Mouse(_) | Event::Paste(_)) => continue,
             Err(e) => break WatchEvent::TerminalEventErr(e),
         }
     };

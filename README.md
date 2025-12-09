@@ -1,7 +1,9 @@
-# [Rustlings](https://rustlings.rust-lang.org) 🦀
+# Viasat Rust Interview Questions 🦀
 
-Small exercises to get you used to reading and writing [Rust](https://www.rust-lang.org) code - _Recommended in parallel to reading [the official Rust book](https://doc.rust-lang.org/book) 📚️_
+This repository contains a minimal set of Rust exercises inspired by [Rustlings](https://rustlings.rust-lang.org). These questions are designed to assess your familiarity with reading and writing [Rust](https://www.rust-lang.org) code.
 
-Visit the **website** for a demo, info about setup and more:
+Use this repo to demonstrate your Rust skills as part of the Viasat interview process.
 
-## ➡️ [rustlings.rust-lang.org](https://rustlings.rust-lang.org) ⬅️
+---
+
+For more information about Rust, see [the official Rust book](https://doc.rust-lang.org/book).

@@ -1,3 +1,8 @@
-# Quizzes
+# Quiz
 
-After every couple of sections, there will be a quiz in this directory that'll test your knowledge on a bunch of sections at once.
+This is a quick based on the Ruslings quiz2 which tests ideas on:
+- Strings
+- Vecs
+- Move semantics
+- Modules
+- Enums

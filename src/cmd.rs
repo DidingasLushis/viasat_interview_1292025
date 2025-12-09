@@ -1,7 +1,7 @@
 use anyhow::{Context, Result, bail};
 use serde::Deserialize;
 use std::{
-    io::{Read, pipe},
+    io::Read,
     path::PathBuf,
     process::{Command, Stdio},
 };
@@ -17,20 +17,22 @@ fn run_cmd(mut cmd: Command, description: &str, output: Option<&mut Vec<u8>>) ->
     };
 
     let mut handle = if let Some(output) = output {
-        let (mut reader, writer) = pipe().with_context(|| {
-            format!("Failed to create a pipe to run the command `{description}``")
-        })?;
+        cmd.stdout(Stdio::piped()).stderr(Stdio::piped());
+        let mut handle = spawn(cmd)?;
 
-        let writer_clone = writer.try_clone().with_context(|| {
-            format!("Failed to clone the pipe writer for the command `{description}`")
-        })?;
+        if let Some(stdout) = handle.stdout.take() {
+            let mut reader = stdout;
+            reader
+                .read_to_end(output)
+                .with_context(|| format!("Failed to read stdout of the command `{description}`"))?;
+        }
 
-        cmd.stdout(writer_clone).stderr(writer);
-        let handle = spawn(cmd)?;
-
-        reader
-            .read_to_end(output)
-            .with_context(|| format!("Failed to read the output of the command `{description}`"))?;
+        if let Some(stderr) = handle.stderr.take() {
+            let mut reader = stderr;
+            reader
+                .read_to_end(output)
+                .with_context(|| format!("Failed to read stderr of the command `{description}`"))?;
+        }
 
         output.push(b'\n');
 
