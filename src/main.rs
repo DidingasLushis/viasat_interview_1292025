@@ -25,21 +25,21 @@ mod watch;
 
 const CURRENT_FORMAT_VERSION: u8 = 1;
 
-/// Rustlings is a collection of small exercises to get you used to writing and reading Rust code
+/// The interview exercises is a collection of small exercises to get you used to writing and reading Rust code
 #[derive(Parser)]
 #[command(version)]
 struct Args {
     #[command(subcommand)]
     command: Option<Subcommands>,
     /// Manually run the current exercise using `r` in the watch mode.
-    /// Only use this if Rustlings fails to detect exercise file changes.
+    /// Only use this if this tool fails to detect exercise file changes.
     #[arg(long)]
     manual_run: bool,
 }
 
 #[derive(Subcommand)]
 enum Subcommands {
-    /// Initialize the official Rustlings exercises
+    /// Initialize the official interview exercises
     Init,
     /// Run a single exercise. Runs the next pending exercise if the exercise name is not specified
     Run {
@@ -58,7 +58,7 @@ enum Subcommands {
         /// The name of the exercise
         name: Option<String>,
     },
-    /// Commands for developing (community) Rustlings exercises
+    /// Commands for developing (community) interview exercises
     #[command(subcommand)]
     Dev(DevCommands),
 }
@@ -206,12 +206,11 @@ Try to install the latest Rustlings version first.";
 
 const PRE_INIT_MSG: &str = r"
        Welcome to...
-                 _   _ _
-  _ __ _   _ ___| |_| (_)_ __   __ _ ___
- | '__| | | / __| __| | | '_ \ / _` / __|
- | |  | |_| \__ \ |_| | | | | | (_| \__ \
- |_|   \__,_|___/\__|_|_|_| |_|\__, |___/
-                               |___/
+__     ___                 _   
+\ \   / (_) __ _ ___  __ _| |_ 
+ \ \ / /| |/ _` / __|/ _` | __|
+  \ V / | | (_| \__ \ (_| | |_ 
+   \_/  |_|\__,_|___/\__,_|\__|
 
 The `exercises/` directory couldn't be found in the current directory.
-If you are just starting with Rustlings, run the command `rustlings init` to initialize it.";
+If you are just starting with the interview exercises, run the command `viasat-interview init` to initialize it.";

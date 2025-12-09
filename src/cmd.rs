@@ -73,7 +73,7 @@ impl CmdRunner {
             .context(CARGO_METADATA_ERR)?;
 
         if !metadata_output.status.success() {
-            bail!("The command `cargo metadata …` failed. Are you in the `rustlings/` directory?");
+            bail!("The command `cargo metadata …` failed. Are you in the `interview/` directory?");
         }
 
         let metadata: CargoMetadata = serde_json::de::from_slice(&metadata_output.stdout)

@@ -14,7 +14,7 @@ fn main() {
     \_/  |_|\__,_|___/\__,_|\__|"#);
     println!();
     println!("This exercise compiles successfully. The remaining exercises contain a compiler");
-    println!("or logic error. The central concept behind Rustlings is to fix these errors and");
+    println!("or logic error. The central concept behind this interview is to fix these errors and");
     println!("solve the exercises. Good luck!");
     println!();
     println!("The file of this exercise is `exercises/00_intro/intro1.rs`. Have a look!");
